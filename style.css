@@ -1,0 +1,298 @@
+/* ================================================
+   Color Variables – Full Green Theme, Light Mode
+   ================================================ */
+:root {
+  --bg-main:       #f4faf6;   /* soft green-tinted white background */
+  --bg-card:       #ffffff;   /* white card background */
+  --bg-card-hover: #edfaf3;   /* light green on card hover */
+  --accent-green:  #1e8c55;   /* primary dark green */
+  --accent-light:  #4caf82;   /* lighter green for accents */
+  --green-soft:    #e8f7ef;   /* very soft green for badges/chips */
+  --green-glow:    #4caf8233; /* transparent green for glow effects */
+  --text-main:     #1a2e23;   /* dark green-tinted text */
+  --text-muted:    #5a7a67;   /* muted green-grey text */
+  --border:        #c8e6d4;   /* soft green border */
+  --border-strong: #4caf82;   /* stronger green border on hover */
+}
+
+/* ===== Base Reset ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  /* subtle dot pattern for depth */
+  background-image: radial-gradient(circle, #c8e6d433 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ===== Header ===== */
+header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 28px 48px 22px;
+  border-bottom: 2px solid var(--border);
+  background: linear-gradient(135deg, #e8f7ef 0%, #f4faf6 100%);
+}
+
+/* KAU logo – square, on the left */
+.logo-kau {
+  height: 72px;
+  width: 72px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* FCIT logo – rectangular, on the right, matches visual weight */
+.logo-fcit {
+  height: 72px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.header-text { flex: 1; }
+
+.header-text h1 {
+  font-size: 1.85rem;
+  font-weight: 900;
+  color: var(--text-main);
+}
+
+/* Highlighted name portion in green */
+.header-text h1 span { color: var(--accent-green); }
+
+.header-text p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  font-family: 'Fira Code', monospace;
+}
+
+/* ===== Main Content Area ===== */
+main { padding: 36px 48px 60px; max-width: 1200px; margin: 0 auto; }
+
+/* ===== Section Title ===== */
+.section-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-green);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+}
+
+/* Green left bar before each section title */
+.section-title::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 18px;
+  background: var(--accent-green);
+  border-radius: 2px;
+}
+
+/* ===== Labs Grid – exactly 4 cards per row ===== */
+.labs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 48px;
+}
+
+/* Individual lab card link */
+.lab-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-decoration: none;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 4px #00000008;
+}
+
+/* Green top bar that slides in on hover */
+.lab-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent-green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  border-radius: 12px 12px 0 0;
+}
+
+.lab-card:hover::before { transform: scaleX(1); }
+
+.lab-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-strong);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px #00000012, 0 0 12px var(--green-glow);
+}
+
+/* Completed lab – subtle green border tint */
+.lab-card.done { border-color: #a8d9bc; }
+
+/* Pending lab – greyed out and not clickable */
+.lab-card.pending { opacity: 0.55; pointer-events: none; cursor: default; }
+
+/* Lab number (e.g. "Lab 01") */
+.lab-number {
+  font-family: 'Fira Code', monospace;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--accent-green);
+}
+
+/* Lab sub-label (e.g. "First Lab") */
+.lab-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Status badge (Done / Coming Soon) */
+.badge {
+  font-size: 0.68rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-family: 'Fira Code', monospace;
+  margin-top: 4px;
+}
+
+.badge.done    { background: var(--green-soft); color: var(--accent-green); border: 1px solid #a8d9bc; }
+.badge.pending { background: #f0f0f0; color: #aaa; border: 1px solid #ddd; }
+
+/* ===== Assignments Grid – centered ===== */
+.assignments-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Individual assignment card */
+.assignment-card {
+  width: 300px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 4px #00000008;
+}
+
+/* Colored top stripe – different shade per assignment */
+.assignment-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  border-radius: 14px 14px 0 0;
+}
+
+.assignment-card.asgn-1::after { background: linear-gradient(90deg, #1e8c55, #4caf82); }
+.assignment-card.asgn-2::after { background: linear-gradient(90deg, #4caf82, #81c9a4); }
+.assignment-card.asgn-3::after { background: linear-gradient(90deg, #81c9a4, #b2dfc6); }
+
+/* Pending assignment – greyed out, not clickable */
+.assignment-card.pending {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.assignment-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px #00000014;
+  background: var(--bg-card-hover);
+}
+
+/* Header row inside each assignment card */
+.asgn-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.asgn-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* Small course code chip */
+.asgn-num {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  background: var(--green-soft);
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+}
+
+/* Assignment description text */
+.asgn-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* "View Assignment" button */
+.asgn-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-family: 'Fira Code', monospace;
+  color: var(--accent-green);
+  border: 1.5px solid var(--border-strong);
+  padding: 7px 16px;
+  border-radius: 8px;
+  width: fit-content;
+  background: var(--green-soft);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+
+.asgn-link:hover {
+  background: var(--accent-green);
+  color: #fff;
+  box-shadow: 0 4px 12px var(--green-glow);
+  transform: translateY(-1px);
+}
+
+/* ===== Footer ===== */
+footer {
+  text-align: center;
+  padding: 22px;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  border-top: 1.5px solid var(--border);
+  font-family: 'Fira Code', monospace;
+  background: #edf7f1;
+}
+
+footer span { color: var(--accent-green); font-weight: 700; }
