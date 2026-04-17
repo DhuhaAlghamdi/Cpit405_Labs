@@ -1,5 +1,5 @@
 /* ================================================
-   Color Variables – Full Green Theme, Light Mode
+               Labs Portfolio - CSS 
    ================================================ */
 :root {
   --bg-main:       #f4faf6;   /* soft green-tinted white background */
@@ -151,7 +151,7 @@ main { padding: 36px 48px 60px; max-width: 1200px; margin: 0 auto; }
 .lab-card.done { border-color: #a8d9bc; }
 
 /* Pending lab – greyed out and not clickable */
-.lab-card.pending { opacity: 0.55; pointer-events: none; cursor: default; }
+.lab-card.pending { opacity: 0.55; cursor: pointer; }
 
 /* Lab number (e.g. "Lab 01") */
 .lab-number {
